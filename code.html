@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Process Monitor - How it was built | Gramener</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  {% include template-header.html %}
+</head>
+
+<body class="home">
+  {% set base = '.' %}
+  {% include template-navbar.html %}
+  <section class="container py-4 text-center">
+    <h1 class="h4 pb-3 text-light font-weight-bold">How was this app built?</h1>
+    <p class="text-light">Using <a class="text-light font-weight-bold border-bottom"
+        href="https://gramener.com/platform">Gramex</a> &ndash; a low-code framework that's fast, and builds engaging apps.</p>
+    <p class="text-light">Here's a quick overview of how we built the app, and how it works.</p>
+  </section>
+
+  <section class="container features">
+    <div class="feature">
+      <p>Using <a href="https://learn.gramener.com/guide/init/">Gramex init</a>, we scaffolded the application. By
+        default, it showed a few sample charts from a dummy dataset.</p>
+    </div>
+    <div class="feature">
+      <p>Using the <a href="https://learn.gramener.com/guide/uicomponents/">UI Component Library</a>, we created a theme
+        (color palette, font and baseline typography) used in all views.</p>
+    </div>
+    <div class="feature">
+      <p>The next step was the <a href=".">home page</a>. <a
+          href="https://learn.gramener.com/guide/filehandler/#templates">FileHandler
+          templates</a> simplified custom components like the header and footer.</p>
+    </div>
+    <div class="feature">
+      <p>We <a href="login/">restricted access</a> to the application using an <a
+          href="https://learn.gramener.com/guide/auth/">Auth handler</a>. We can also specify who has access to what.</p>
+    </div>
+    <div class="feature">
+      <p>We set up the <a href="data.xlsx">input data</a> as a stream-able source, and used <a
+          href="https://learn.gramener.com/guide/formhandler/">FormHandler</a> to expose segments as a <a href="data">REST
+          API</a>.</p>
+    </div>
+    <div class="feature">
+      <p>We created a decision-tree classifier to predict Good / Bad results as an API to <a href="train">train</a> and <a
+          href="train?retrain=1">retrain</a> the data using <a
+          href="https://learn.gramener.com/guide/functionhandler/">FunctionHandler</a>.</p>
+    </div>
+    <div class="feature">
+      <p>We exposed the <a href="classify">trained model as an API</a>, allowing the user to <a href="predictor">predict
+          results</a> using <a href="https://learn.gramener.com/guide/modelhandler/">ModelHandler</a>.</p>
+    </div>
+    <div class="feature">
+      <p>We rendered the result using <a href="https://learn.gramener.com/guide/g1/template">client-side Gramex templates</a>.
+        This creates flexible interactive layouts like on <a href="monitor">Monitor</a>.</p>
+    </div>
+  </section>
+
+  <section class="container py-4 my-4 text-center">
+    <h1 class="h4 py-3 font-weight-bold">8 components replacing over 2,500 lines of code. 4 views in 3 days.</h1>
+    <p><a href="https://gramener.com/platform/" class="btn btn-lg btn-primary">Try it. Download Gramex</a></p>
+  </section>
+
+  {% include template-footer.html %}
+</body>
+
+</html>
+
+<!--
+  175 ModelHandler
+  318 FileHandler
+  72  FunctionHandler
+  414 AuthHandler
+  264 FormHandler
+  206 Templates
+  549 gramex init
+  732 uicomponents: bootstrap-theme.scss
+-->

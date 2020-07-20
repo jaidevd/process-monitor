@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Process Monitor - Mobile Alert | Gramener</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  {% include template-header.html %}
+</head>
+
+<body class="mobile h-full d-flex flex-column">
+  <header class="text-center">
+    <a class="btn btn-dark my-3" href=".">
+      <img height="32" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkAQAAAADJe6U1AAAABGdBTUEAALGPC/xhBQAAAAJ0Uk5TAAB2k804AAAANUlEQVR42mNgwAX4/x8AkvZgsh5M/geTP8CyH0ggP1BKMoLIH8wfwG54AHbPA7jb+P9jcz0AKpcxBQbNJ8sAAAAASUVORK5CYII=" alt="Logo">
+      <span>Process Monitor</span>
+    </a>
+  </header>
+
+  <main class="text-center flex-grow-1">
+    <section>
+      <i class="loading fas fa-spinner fa-pulse fa-10x"></i>
+      <script type="text/html">
+        <div class="h4">
+          At <%= numeral(row.Counter).format('00:00') %>, batch
+        </div>
+        <% if (row.Outcome.match(/Good/)) { %>
+          <div class="h4"><strong><%= row['Batch Number'] %></strong> is</div>
+          <h1 class="font-weight-bold">Good</h1>
+          <p>Fine > 90%</p>
+          <span class="fa-stack fa-2x">
+              <i class="fas fa-circle fa-stack-2x text-success"></i>
+            <i class="fas fa-check fa-stack-1x fa-inverse"></i>
+          </span>
+          <div class="py-4">
+            <span class="h5 my-3 px-4 py-2 bg-success text-light shadow-sm">No action required</span>
+          </div>
+        <% } else { %>
+          <div class="h4 text-danger"><strong><%= row['Batch Number'] %></strong> is</div>
+          <h1 class="font-weight-bold text-danger">Bad</h1>
+          <p class="text-danger">Fine < 90%</p>
+          <span class="fa-stack fa-2x">
+            <i class="fas fa-circle fa-stack-2x text-danger"></i>
+            <i class="fas fa-times fa-stack-1x fa-inverse"></i>
+          </span>
+          <div class="py-4">
+            <span class="h5 my-3 px-4 py-2 bg-warning shadow-sm">Extend crushing time</span>
+          </div>
+        <% } %>
+      </script>
+    </section>
+  </main>
+
+  {% include template-footer.html %}
+  <script src="simulator.js"></script>
+</body>
+
+</html>

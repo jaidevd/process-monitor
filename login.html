@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../style.css">
+  {% include template-header.html %}
+</head>
+
+<body class="home">
+  {% set base = '..' %}
+  {% include template-navbar.html %}
+  {% set kwargs = handler.kwargs %}
+  {% try %}{% set user = kwargs.user.arg %}{% except %}{% set user = 'user' %}{% end %}
+  {% try %}{% set password = kwargs.password.arg %}{% except %}{% set password = 'password' %}{% end %}
+  <section class="container py-4 text-center">
+    <h1 class="h4 pb-3 text-light font-weight-bold">Log into Process Monitor</h1>
+    <p class="text-light">This is a demo application, with anonymized data.</p>
+  </section>
+
+  <div class="container d-flex flex-column align-items-center">
+    <div class="card shadow text-dark mx-auto my-4 px-5 py-3 col-md-6">
+      {% if error %}
+        <div class="alert alert-danger mx-n3">
+          <h1 class="h4">Error logging in</h1>
+          <p>{{ error['error'] }}</p>
+          <div><small><strong>code</strong>: {{ error['code'] }}</small></div>
+        </div>
+      {% end %}
+      <form method="POST">
+        <div class="form-group">
+          <label for="{{ user }}" class="mb-0">User name</label>
+          <small class="form-text text-muted mb-3">
+            The user name is <code>gramex</code>. Type it in lower case.
+          </small>
+          <input type="text" class="form-control" name="{{ user }}" id="{{ user }}" value="{{ handler.get_argument(user, '') }}" placeholder="" autofocus required>
+        </div>
+
+        <div class="form-group">
+          <label for="{{ password  }}" class="mb-0">Password</label>
+          <small class="form-text text-muted mb-3">
+            The password is <code>demo</code>. Type it in lower case.
+          </small>
+          <input type="password" class="form-control" name="{{ password }}" id="{{ password }}" placeholder="" required>
+        </div>
+        <input type="hidden" name="_xsrf" value="{{ handler.xsrf_token }}">
+        <p><button type="submit" class="btn btn-primary w-100 small">Login</button></p>
+        {% if kwargs.get('forgot') %}
+          <p class="small"><a href="?{{ kwargs.forgot.key }}">Forgot password</a></p>
+        {% end %}
+      </form>
+    </div><!-- .card -->
+  </div>
+  <script src="../ui/jquery/dist/jquery.min.js"></script>
+  <script src="../ui/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  {% if 'hash' in kwargs.get('password', {}) %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+    <script>
+      /* eslint-env browser, jquery */
+      /* globals sha256 */
+      // hash the password before submitting
+      $('form').on('submit', function() {
+        var $password = $('#{{ password }}').get(0)
+        $password.value = sha256($password.value)
+      })
+    </script>
+  {% end %}
+</body>
+
+</html>

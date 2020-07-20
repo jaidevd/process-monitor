@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Process Monitor - Predictor | Gramener</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  {% include template-header.html %}
+  {% import re %}
+  {% set slug = lambda s: re.sub(r'\W+', '-', s.lower()) %}
+  {% from process_monitor import modelinfo, argparse %}
+</head>
+
+<body class="home">
+  {% set base = '.' %}
+  {% include template-navbar.html %}
+
+  <section class="container py-4 text-center">
+    <h1 class="h4 pb-3 text-light font-weight-bold">Predict Process Outcome</h1>
+    <p class="text-light mb-3 pb-3">Find out whether your process will lead to a good outcome or a bad one. Fill your batch parameters to see the result.</p>
+
+    <h2 class="bg-white font-weight-bold text-uppercase py-3 mt-3 mb-0">
+      This batch is <span class="result-text"><i class="fa-pulse fa-spinner fas"></i></span>
+    </h2>
+    <form class="result bg-light rounded p-3">
+      {% for feature in modelinfo.features.categorical %}
+        {% set id, vals = slug(feature), modelinfo['values'][feature] %}
+        <div class="form-group row">
+          <label for="{{ id }}" class="col-sm-6 col-form-label text-left text-sm-right">{{ feature }}</label>
+          <div class="col-sm-4">
+            <select class="custom-select" one-hot-name="{{ feature }}" id="{{ id }}">
+              {% for val in vals %}
+                {% set selected = 'selected' if val == handler.get_arg(feature, '') else '' %}
+                <option {{ selected }}>{{ val }}</option>
+              {% end %}
+            </select>
+          </div>
+        </div>
+      {% end %}
+      {% for feature in modelinfo.features.numeric %}
+        {% set id, vals = slug(feature), modelinfo['values'][feature] %}
+        <div class="form-group row">
+          <label for="{{ id }}" class="col-sm-6 col-form-label text-left text-sm-right">{{ feature }}</label>
+          <div class="col-sm-2">
+            <input type="number" class="form-control text-right sync" name="{{ feature }}" id="{{ id }}" min="{{ vals.min }}" max="{{ vals.max }}"
+              step="{{ vals.step }}" value="{{ handler.get_arg(feature, vals.default) }}">
+          </div>
+          <div class="col-sm-4">
+            <input type="range" class="form-control text-right sync" id="{{ id }}-range" min="{{ vals.min }}" max="{{ vals.max }}"
+              step="{{ vals.step }}" value="{{ handler.get_arg(feature, vals.default) }}">
+          </div>
+        </div>
+      {% end %}
+      <div class="form-group row">
+        <div class="col-sm-6 offset-sm-6 text-left">
+          <p>Results aren't changing? Start with a <a class="font-weight-bold text-success"
+              href="?Avg%20Reactor%20Temperature=80">good batch</a> or a <a class="font-weight-bold text-danger"
+              href="?Avg%20Crystallizer%20Cooling%20Rate=70">bad batch</a> and tweak it.</p>
+          <p>
+            <button type="button" class="btn btn-primary copy">
+              Copy link
+              <span class="copy-link sm2 d-none">(Copied to clipboard)</span>
+            </button>
+          </p>
+          <p class="sm1">Click to save these parameters. Copy the link and share with others</p>
+          <p class="sm1">For advanced users: <a href="train?retrain=1">Retrain model</a></p>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  {% include template-footer.html %}
+  <script src="node_modules/clipboard/dist/clipboard.min.js"></script>
+  <script src="predictor.js"></script>
+</body>
+
+</html>

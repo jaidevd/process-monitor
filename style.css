@@ -1,0 +1,124 @@
+/*  UI component styles. Customize via ?bootstrap-variable=encoded-value. Example:
+    Colors. Can be a name or a number (e.g. %23aabbcc). Preserve the hues below.
+      primary=blue
+      success=green
+      info=cyan
+      warning=orange
+      danger=red
+      secondary=grey
+      light=lightgrey
+      dark=darkgrey
+      body-bg=white
+      body-color=black
+    Fonts. Can be a system font or Open+Sans, Roboto, Lato, Anton, Monserrat
+      font-family-base=Segoe+UI
+      headings-font-family=Segoe+UI
+    Other
+      https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss
+
+    Design inspired by Data Quality Tool (Abhishek)
+    https://gramener.invisionapp.com/d/main#/console/19949380/417656145/preview
+*/
+@import url("ui/bootstraptheme.css?danger=%239f0d1b&dark=%23304268&primary=%23073A91&body-bg=%23F1F6FC&success=%23036819&warning=%23d6a20a&font-family-base=segoe-ui&headings-font-family=roboto&font-size-base=1.2rem&navbar-dark-color=rgba(255,255,255,0.8)&navbar-dark-hover-color=%23fff");
+/* For v4 icons, use url("ui/font-awesome/css/font-awesome.min.css") */
+@import url("ui/@fortawesome/fontawesome-free/css/all.min.css");
+
+
+/* custom styles for app: process-monitor */
+.home .navbar {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.navbar-dark .navbar-nav .show>.nav-link, .navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .nav-link.active {
+  border-bottom: 2px solid var(--white);
+}
+
+.home {
+  background-image: url('img/wave.svg');
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+
+/* Make the tooltip a bit smaller than the base font size. Since we're using 1.2rem base font size, this inverts it. */
+.tooltip {
+  font-size: 0.833333333rem;
+}
+
+/* Used to create a white-ish background on the home page sections */
+.bg-lighter {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* We want the mobile page to run scripts from the footer, but not show the footer text */
+.mobile footer {
+  display: none;
+}
+
+.mobile main section {
+  margin-top: 15vh;
+}
+
+@media (min-width:768px) {
+  .mobile main {
+    background-image: url('img/iphone.svg');
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: 22rem;
+    min-height: 45rem;
+  }
+  .mobile main section {
+    margin-top: 12rem;
+  }
+}
+
+/* Bootstrap upgrade required to avoid this */
+.custom-select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.result.Good { background-color: #c9fbcc; }
+.result.Bad { background-color: #fbe1c9; }
+
+
+.controls { height: 50px; }
+.controls>div { width: 10.3%; position: absolute; }
+.controls input[type="range"] { width: 100%; }
+
+.features {
+  display: grid;
+  grid-gap: 1rem;
+  counter-reset: features;
+}
+
+@media (min-width: 768px) {
+  .features { grid-template-columns: 0.5fr 0.5fr; }
+}
+
+.features .feature {
+  counter-increment: features;
+  background-color: var(--light);
+  display: flex;
+  margin: 1rem 0;
+  box-shadow: 1px 1px 3px rgba(0,0,0,.2);
+}
+.features .feature p {
+  margin: 0.5rem 1rem;
+  text-align: left;
+}
+
+.features .feature::before {
+  content: counter(features);
+  font-size: 3rem;
+  font-weight: bold;
+  width: 5rem;
+  text-align: center;
+  background-color: var(--info);
+  color: var(--light);
+  flex-shrink: 0;
+}
+
+.features a {
+  text-decoration: underline;
+}

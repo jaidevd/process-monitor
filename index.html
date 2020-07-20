@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Process Monitor | Gramener</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  {% include template-header.html %}
+</head>
+
+<body class="home">
+  {% set base = '.' %}
+  {% include template-navbar.html %}
+  <section class="container py-4 text-center">
+    <h1 class="h4 pb-3 text-light font-weight-bold">Monitor your Organic Synthesis Process</h1>
+    <p class="text-light">Use Machine Learning to alert operators when quality drops</p>
+
+    <row class="row justify-content-center">
+      <column class="col-12 col-lg-3 d-flex">
+        <card class="card shadow my-4 pt-3 align-self-stretch">
+          <i class="card-img-top d-block fas fa-mobile-alt fa-5x py-3 text-dark"></i>
+          <div class="card-body">
+            <h5 class="card-title"><strong>Mobile</strong> Alert</h5>
+            <p class="card-text">
+              Open in your mobile and <strong>put it in your pocket</strong>. You will get an alert when quality drops.
+            </p>
+            <a href="mobile" class="btn btn-primary">Open Mobile</a>
+          </div>
+        </card>
+      </column>
+      <column class="col-12 col-lg-3 d-flex">
+        <card class="card shadow my-4 pt-3 align-self-stretch">
+          <i class="card-img-top d-block fas fa-desktop fa-5x py-3 text-dark"></i>
+          <div class="card-body">
+            <h5 class="card-title">Floor <strong>Monitor</strong></h5>
+            <p class="card-text">
+              Display in a large screen on the plant floor. Operators can <strong>see from far</strong> when quality drops.
+            </p>
+            <a href="monitor" class="btn btn-primary">Open Monitor</a>
+          </div>
+        </card>
+      </column>
+      <column class="col-12 col-lg-3 d-flex">
+        <card class="card shadow my-4 pt-3 align-self-stretch">
+          <i class="card-img-top d-block far fa-arrow-alt-circle-right fa-5x py-3 text-dark"></i>
+          <div class="card-body">
+            <h5 class="card-title"><strong>Predict</strong> Quality</h5>
+            <p class="card-text">
+              Find out if a batch will produce a good result or a bad result &mdash; <strong>without running it</strong>.
+            </p>
+            <a href="predictor" class="btn btn-primary">Open Predictor</a>
+          </div>
+        </card>
+      </column>
+      <column class="col-12 col-lg-3 d-flex">
+        <card class="card shadow my-4 pt-3 align-self-stretch">
+          <i class="card-img-top d-block fas fa-cog fa-spin fa-5x py-3 text-dark"></i>
+          <div class="card-body">
+            <h5 class="card-title"><strong>Simulator</strong></h5>
+            <p class="card-text">
+              Re-run the last batch to explore the <strong>minimal change</strong> to improve batch quality.
+            </p>
+            <a href="simulator" class="btn btn-primary">Open Simulator</a>
+          </div>
+        </card>
+      </column>
+    </row>
+  </section>
+
+  <section class="container py-4 my-4 text-center bg-lighter">
+    <h1 class="h4 py-3 font-weight-bold">What does this application do?</h1>
+    <row class="row justify-content-center">
+      <column class="col-12 col-lg-3 d-flex">
+        <card class="card shadow my-4 pt-3 align-self-stretch">
+          <i class="card-img-top d-block far fa-thumbs-up fa-5x py-3 text-success"></i>
+          <div class="card-body">
+            <h5 class="card-title"><strong>Predict</strong> quality</h5>
+            <p class="card-text">
+              Using real-time data of reactor temperature, crystallizer cooling rate, its
+              stirring speed, etc, we predict whether this batch will be good or bad in real-time.
+            </p>
+          </div>
+        </card>
+      </column>
+      <column class="col-12 col-lg-3 d-flex">
+        <card class="card shadow my-4 pt-3 align-self-stretch">
+          <i class="card-img-top d-block fas fa-wrench fa-5x py-3 text-danger"></i>
+          <div class="card-body">
+            <h5 class="card-title"><strong>Fix</strong> batches</h5>
+            <p class="card-text">
+              When we predict a bad batch, we alert the user. They can increase the crushing cycle
+              time to increase the fine particle ratio in the batch, <strong>reducing wastage</strong>.
+            </p>
+          </div>
+        </card>
+      </column>
+      <column class="col-12 col-lg-3 d-flex">
+        <card class="card shadow my-4 pt-3 align-self-stretch">
+          <i class="card-img-top d-block far fa-star fa-5x py-3 text-primary"></i>
+          <div class="card-body">
+            <h5 class="card-title"><strong>Optimize</strong> setup</h5>
+            <p class="card-text">
+              Analysts can re-run any past batch to automatically with parameters needed to
+              fix the batch, <strong>reducing re-work</strong> and future monitoring cost.
+            </p>
+          </div>
+        </card>
+      </column>
+    </row>
+  </section>
+
+  <section class="container py-4 my-4 text-center">
+    <p>Not sure where to start?</p>
+    <a href="simulator" class="btn btn-lg btn-primary">Open Simulator</a>
+  </section>
+
+  {% include template-footer.html %}
+</body>
+
+</html>

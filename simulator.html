@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Process Monitor - Simulator | Gramener</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  {% include template-header.html %}
+</head>
+
+<body>
+  {% set base = '.' %}
+  {% include template-navbar.html %}
+  {% set data_src = 'datasimulate?' + handler.request.query %}
+  {% include template-plant.html %}
+  {% set import process_monitor %}
+  {% set q = process_monitor.argparse(handler) %}
+  {% include template-controls.html %}
+  {% include template-footer.html %}
+  <script src="simulator.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+# See http://doc.gitlab.com/ce/ci/yaml/README.html
+
+validate:
+  script:
+    - validate v1
+
+# Deploy application to a server
+deploy-www:
+  stage: deploy
+  script: deploy
+  only: [master, dev, /^dev-.*$/]
+  variables:
+    SERVER: ubuntu@gramener.com
+    URL: processmonitor
+    SETUP: yarn install
+    PORT: 8050
+    VERSION: py3v1

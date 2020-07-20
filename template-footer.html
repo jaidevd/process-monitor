@@ -1,0 +1,30 @@
+{% set plant = handler.request.path.split('/')[-1] in {'monitor', 'simulator'} %}
+<hr>
+<footer class="{{ 'container-fluid' if plant else 'container' }} text-secondary sm1 pt-2 mb-5">
+  <row class="row">
+    <column class="col-sm-6 text-center text-sm-left">
+      <p>Built by <a class="font-weight-bold" href="https://gramener.com/">Gramener</a></p>
+
+    </column>
+    <column class="col-sm-6 text-center text-sm-right">
+      <p>Powered by <a class="font-weight-bold" href="https://gramener.com/platform/">Gramex</a></p>
+    </column>
+  </row>
+</footer>
+
+<script src="ui/lodash/lodash.min.js"></script>
+<script src="ui/jquery/dist/jquery.min.js"></script>
+<script src="ui/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="ui/numeral/min/numeral.min.js"></script>
+<script src="ui/g1/dist/g1.min.js"></script>
+<script>
+  $(function () {
+    // Enable tooltip
+    $('[data-toggle="tooltip"]').tooltip()
+    // Highlight home page
+    $('.navbar .pages a').each(function () {
+      if (location.pathname.length > 1 && this.href.match(location.pathname + '$'))
+        $(this).addClass('active')
+    })
+  })
+</script>

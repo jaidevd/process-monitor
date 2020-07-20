@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Process Monitor | Gramener</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  {% include template-header.html %}
+</head>
+
+<body class="home">
+  {% set base = '.' %}
+  {% include template-navbar.html %}
+  <section class="container py-4 my-4 text-center">
+    <h1 class="h4 py-3 font-weight-bold text-white">How does this process work?</h1>
+    <row class="row justify-content-center text-white">
+      <column class="col-lg-6">
+        <p><a class="text-light" href="https://en.wikipedia.org/wiki/Acme_Corporation" target="_blank" rel="noopener">Acme
+            Corp</a> makes tablets that require fine particle powder. (Course powder needs further crushing.)</p>
+        <p><img src="img/process.png" class="img-fluid img-thumbnail shadow" alt="Process flow diagram"></p>
+      </column>
+    </row>
+    <row class="row justify-content-center">
+      <column class="col-lg-4 d-flex">
+        <card class="card shadow my-4 align-self-stretch">
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold">Fine particles are good</h5>
+            <p class="card-text">If a batch has over 90% of fine particles, it's a good batch.</p>
+          </div>
+        </card>
+      </column>
+      <column class="col-lg-4 d-flex">
+        <card class="card shadow my-4 align-self-stretch">
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold">Coarse particles are bad</h5>
+            <p class="card-text">Bad batches have less than 90% fine particles. They must be <em class="text-danger">flagged in advance</em> to avoid wastage</em></p>
+          </div>
+        </card>
+      </column>
+    </row>
+  </section>
+
+  <section class="container py-4 my-4 text-center">
+    <h1 class="h4 py-3 font-weight-bold">What can the operator do?</h1>
+    <row class="row justify-content-center">
+      <column class="col-lg-4 d-flex">
+        <card class="card shadow my-4 align-self-stretch">
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold">1. Set controls</h5>
+            <p class="card-text">
+              The operator can change reactor temperature, crystallizer cooling rate, its stirring
+              speed, etc. The right combinations lead to better batches.</p>
+            <p class="card-text">But this relies on operator's experience.</p>
+            <p class="card-text">The <a class="text-primary font-weight-bold" href="simulator">Simulator</a>
+              allows the operator to change controls virtually and <em>simulate</em> whether the outcome will be good or bad.</p>
+          </div>
+        </card>
+      </column>
+      <column class="col-lg-4 d-flex">
+        <card class="card shadow my-4 align-self-stretch">
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold">2. Extend crushing</h5>
+            <p class="card-text">
+              If the operator knows that the batch will go bad (i.e. have more than 90% coarse
+              particles), they can extend the crushing cycle time for the batch.</p>
+            <p class="card-text">But this requires prediction of batch quality.</p>
+            <p class="card-text"> The <a class="text-primary font-weight-bold" href="monitor">Monitor</a> and <a
+                class="text-primary font-weight-bold" href="mobile">Mobile Alert</a> inform
+              operators on the floor and remote when the batch is likely to go bad.</p>
+          </div>
+        </card>
+      </column>
+      <column class="col-lg-4 d-flex">
+        <card class="card shadow my-4 align-self-stretch">
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold">3. Try again</h5>
+            <p class="card-text">
+              By reviewing past batch data and understanding what controls lead to better quality,
+              the operator can find the best setting for the next run of a batch.</p>
+            <p class="card-text">But this requires extensive analytics knowledge.</p>
+            <p class="card-text">The <a class="text-primary font-weight-bold" href="predictor">Predictor</a> lets operators modify
+              batch parameters live, see their outcome, and prepare for the next batch.</p>
+          </div>
+        </card>
+      </column>
+    </row>
+  </section>
+
+  <section class="container py-4 my-4 text-center">
+    <p>Not sure where to start?</p>
+    <a href="simulator" class="btn btn-lg btn-primary">Open Simulator</a>
+  </section>
+
+  {% include template-footer.html %}
+</body>
+
+</html>

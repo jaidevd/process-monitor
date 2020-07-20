@@ -1,0 +1,34 @@
+{% import re %}
+{% set plant = handler.request.path.split('/')[-1] in {'monitor', 'simulator'} %}
+<nav class="navbar navbar-expand-lg navbar-dark text-white {{ 'bg-dark sm1' if plant else '' }}">
+  {% if not plant %}
+    <div class="container">
+  {% end %}
+    <a class="text-white btn" href="{{ base }}" data-toggle="tooltip" title="Visit the Process Monitor home page">
+      <!-- Replace with your logo. Just specify height, not width. -->
+      <img height="32" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkAQAAAADJe6U1AAAABGdBTUEAALGPC/xhBQAAAAJ0Uk5TAAB2k804AAAANUlEQVR42mNgwAX4/x8AkvZgsh5M/geTP8CyH0ggP1BKMoLIH8wfwG54AHbPA7jb+P9jcz0AKpcxBQbNJ8sAAAAASUVORK5CYII=" alt="Logo">
+      <span>Process Monitor</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar left -->
+      <ul class="navbar-nav mr-auto pl-5 text-uppercase">
+      </ul>
+      <!-- Navbar middle -->
+      <div class="navbar-nav mr-auto"></div>
+      <!-- Navbar right -->
+      <div class="navbar-nav pages">
+        <a href="mobile" class="nav-link" data-toggle="tooltip" title="Open on your mobile to alert the operator when quality drops">Mobile</a>
+        <a href="monitor" class="nav-link" data-toggle="tooltip" title="Display on the shop floor monitor for the operator to keep an eye on">Monitor</a>
+        <a href="simulator" class="nav-link" data-toggle="tooltip" title="For analysts to explore what can be done to improve process quality">Simulator</a>
+        <a href="predictor" class="nav-link" data-toggle="tooltip" title="For analysts to predict the quality of a batch, without running the tet">Predictor</a>
+        <a href="code" class="nav-link" data-toggle="tooltip" title="Explore the Gramex features and learn how to code and build this app">Code</a>
+        <a href="help" class="nav-link" data-toggle="tooltip" title="Understand how process works, and how to use the application">Help</a>
+      </div>
+    </div>
+  {% if not plant %}
+    </div>
+  {% end %}
+</nav>

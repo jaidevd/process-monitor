@@ -1,0 +1,42 @@
+<!-- q -->
+<!-- htmllint preset="none" -->
+
+<form class="controls mt-n3">
+  {% if (q.speed) %}<input type="hidden" name="speed" value="{{ q.speed }}">{% end %}
+  <div class="text-center" style="left: 8.4%">
+    <input type="range" name="reactor" min="50" max="150" value="{{ q.reactor }}">
+    <div class="sm2">
+      <span>Adjust Reactor Temperature to</span>
+      <span class="font-weight-bold underline" id="reactor">{{ q.reactor }}%</span>
+    </div>
+  </div>
+  <div class="text-center" style="left: 20.3%">
+    <input type="range" name="crystallizer" min="50" max="150" value="{{ q.crystallizer }}">
+    <div class="sm2">
+      <span>Crystallizer Cooling Rate to</span>
+      <span class="font-weight-bold underline" id="crystallizer">{{ q.crystallizer }}%</span>
+    </div>
+  </div>
+  <div class="text-left" style="left: 33%">
+    <div class="sm2">
+      <div>Set Solvent to</div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="solvent" id="solvent-hi" value="Hi"
+          {{ 'checked' if (q.solvent == 'Hi') else '' }} >
+        <label class="form-check-label" for="solvent-hi">Hi</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="solvent" id="solvent-low" value="Low"
+          {{ 'checked' if (q.solvent == 'Low') else '' }} >
+        <label class="form-check-label" for="solvent-low">Low</label>
+      </div>
+    </div>
+  </div>
+  <div class="text-center" style="left: 53.7%">
+    <input type="range" name="dryer" min="50" max="150" value={{ q.dryer }}>
+    <div class="sm2">
+      <span>Dryer Temperature to</span>
+      <span class="font-weight-bold underline" id="dryer">{{ q.dryer }}%</span>
+    </div>
+  </div>
+</form>
