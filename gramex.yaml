@@ -24,8 +24,6 @@ url:
     kwargs:
       path: $YAMLPATH/*.html
       template: true
-      auth:
-        login_url: /$YAMLURL/login/
       headers:
         # Templates may have user-specific content. Cache privately.
         # Keep max-age small (in case we log out & log in as another user.)
@@ -58,27 +56,9 @@ url:
       headers:
         Content-Type: application/json
 
-  process-monitor-login:
-    pattern: /$YAMLURL/login/
-    # You MUST change the auth before deploying. DBAuth is commonly used.
-    # See https://learn.gramener.com/guide/auth/#database-auth
-    handler: SimpleAuth
-    kwargs:
-      template: $YAMLPATH/login.html
-      credentials:
-        alpha: alpha
-        gramex: demo
-
   process-monitor-logout:
     pattern: /$YAMLURL/logout/
     handler: LogoutHandler
-
-# Notify testers what user ID and password to use
-test:
-  auth:
-    user: gramex
-    password: demo
-
 
 # Gramex init configurations for app: process-monitor
 # ----------------------------------------------------------------------------
