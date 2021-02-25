@@ -1,9 +1,6 @@
 /* globals g1 */
 
 $(function () {
-  $.getJSON('train')
-    .fail(function () { alert('Could not train model!') })
-
   var $template = $('script[type="text/html"]')
   var url = g1.url.parse(location.href)
   var simulate = url.pathname.includes('/simulator')

@@ -1,9 +1,6 @@
 /* globals ClipboardJS */
 
 $(function() {
-  $.getJSON('train')
-    .fail(function () { alert('Could not train model!') })
-
   // Sync number and range in input
   $('.sync').on('input change', function () {
     var id = '#' + this.id.replace(/-range$/, '')
@@ -16,17 +13,20 @@ $(function() {
     if (!$('form').get(0).reportValidity())
       return
     $('.copy-link').addClass('d-none')
-    var q = $('form').serialize()
+    var q = g1.url.parse('classify?' + decodeURI($('form').serialize()))
     $('[one-hot-name]').each(function () {
       var feature = $(this).attr('one-hot-name')
+      var to_update = {}
       $('option', this).each(function () {
-        q += '&' + encodeURIComponent(feature + '_' + this.value) + '=' + (this.selected ? '1' : '0')
+        // q += this.selected ? '&' + feature + '=' + this.value : ''
+        if (this.selected) { to_update[feature] = this.value }
       })
+      q.update(to_update)
     })
-    $.getJSON('classify?' + q)
+    $.getJSON(q.toString())
       .done(function (data) {
-        $('.result').removeClass('Good Bad bg-light').addClass(data[0].result)
-        $('.result-text').text(data[0].result)
+        $('.result').removeClass('Good Bad bg-light').addClass(data[0].Outcome)
+        $('.result-text').text(data[0].Outcome)
       })
       .fail(function () {
         $('.result-text').html('in error <small>(see console log)</small>')

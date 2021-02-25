@@ -1,7 +1,5 @@
-import os
 import gramex.ml
 import gramex.cache
-import pandas as pd
 
 modelinfo = gramex.cache.open('model.yaml', 'config', rel=True)
 
@@ -44,33 +42,6 @@ def simulate(df, handler):
     return df
 
 
-def preprocess(df):
-    preprocess = modelinfo.preprocess
-    features = modelinfo.features
-    return (pd.get_dummies(df[features.categorical])
-            .reindex(columns=preprocess.onehot, fill_value=0)
-            .join(df[features.numeric])).fillna(preprocess.imputer)
-
-
-def train(handler, url=None, sheet_name=None):
-    if not os.path.exists(modelinfo.path) or handler.get_arg('retrain', False):
-        df = gramex.cache.open(url, sheet_name=sheet_name)
-        target = modelinfo.features.target
-        data = preprocess(df).join(df[target])
-        model = gramex.ml.Classifier(
-            model_class=modelinfo.classifier,
-            input=list(data.columns.drop(target)),
-            output=target)
-        model.train(data)
-        model.trained = True
-        if not os.path.exists(os.path.dirname(modelinfo.path)):
-            os.makedirs(os.path.dirname(modelinfo.path))
-        model.save(modelinfo.path)
-        return '{"retrained": true}'
-    else:
-        return '{"retrained": false}'
-
-
 def predict(df):
     model = gramex.ml.load(modelinfo.path)
-    return model.predict(preprocess(df))
+    return model.predict(df)

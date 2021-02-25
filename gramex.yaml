@@ -44,17 +44,30 @@ url:
 
   process-monitor-classify:
     pattern: /$YAMLURL/(classify)
-    handler: ModelHandler
+    handler: MLHandler
     kwargs:
-      path: $GRAMEXDATA/apps/processmonitor/
-
-  process-monitor-train:
-    pattern: /$YAMLURL/train
-    handler: FunctionHandler
-    kwargs:
-      function: process_monitor.train(handler, r'$YAMLPATH/data.xlsx', sheet_name='input')
-      headers:
-        Content-Type: application/json
+      data:
+        url: $YAMLPATH/data.xlsx
+        sheet_name: input
+      model:
+        class: DecisionTreeClassifier
+        target_col: Outcome
+        exclude: [Batch Number]
+        cats:
+          - "Material A"
+          - "Material B"
+          - "Solvent Amt"
+          - "Catalyzer Type"
+        nums:
+          - "Avg Reactor Temperature"
+          - "Avg Reaction Time (min)"
+          - "Avg Crystallizer Cooling Rate"
+          - "Avg Crystallizer Stirring Speed"
+          - "Avg Dryer Cycle Time (min)"
+          - "Avg Dryer Speed"
+          - "Avg Dryer Temperature"
+          - "Avg Crushing speed"
+          - "Avg Crushing time (min)"
 
   process-monitor-logout:
     pattern: /$YAMLURL/logout/

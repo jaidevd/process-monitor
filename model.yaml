@@ -1,5 +1,4 @@
-path: $GRAMEXDATA/apps/processmonitor/classify.pkl
-classifier: sklearn.tree.DecisionTreeClassifier
+path: $GRAMEXDATA/apps/mlhandler/process-monitor-classify.pkl
 features:
   categorical:
     - "Material A"
@@ -20,35 +19,14 @@ features:
 values:
   Material A: [A1, A2]
   Material B: [B1, B2]
-  Solvent Amt: [Low, Hi]
+  Solvent Amt: [Low, High]
   Catalyzer Type: [Standard, Enriched]
-  Avg Dryer Cycle Time (min): {min: 140, max: 150, default: 145, step: 0.1}
-  Avg Dryer Speed: {min: 20, max: 25, default: 22, step: 0.1}
-  Avg Dryer Temperature: {min: 60, max: 72, default: 70, step: 0.1}
-  Avg Crushing speed: {min: 12, max: 15, default: 14, step: 0.1}
+  Avg Dryer Cycle Time (min): {min: 140, max: 150, default: 145, step: 1}
+  Avg Dryer Speed: {min: 20, max: 25, default: 22, step: 1}
+  Avg Dryer Temperature: {min: 60, max: 72, default: 70, step: 1}
+  Avg Crushing speed: {min: 12, max: 15, default: 14, step: 1}
   Avg Crushing time (min): {min: 80, max: 100, default: 90, step: 1}
-  Avg Reactor Temperature: {min: 80, max: 86, default: 83, step: 0.1}
-  Avg Reaction Time (min): {min: 240, max: 256, default: 242, step: 0.1}
-  Avg Crystallizer Cooling Rate: {min: 60, max: 70, default: 65, step: 0.1}
-  Avg Crystallizer Stirring Speed: {min: 10, max: 15, default: 12, step: 0.1}
-
-preprocess:
-  onehot:
-    - "Material A_A2"
-    - "Material A_A1"
-    - "Material B_B2"
-    - "Material B_B1"
-    - "Solvent Amt_Hi"
-    - "Solvent Amt_Low"
-    - "Catalyzer Type_Standard"
-    - "Catalyzer Type_Enriched"
-  imputer:
-    'Avg Dryer Cycle Time (min)': 146.0
-    'Avg Dryer Speed': 22.0
-    'Avg Dryer Temperature': 70.7
-    'Avg Crushing speed': 14.0
-    'Avg Crushing time (min)': 90.0
-    'Avg Reactor Temperature': 82.8
-    'Avg Reaction Time (min)': 242.0
-    'Avg Crystallizer Cooling Rate': 65.0
-    'Avg Crystallizer Stirring Speed': 12.0
+  Avg Reactor Temperature: {min: 80, max: 86, default: 83, step: 1}
+  Avg Reaction Time (min): {min: 240, max: 256, default: 242, step: 1}
+  Avg Crystallizer Cooling Rate: {min: 60, max: 70, default: 65, step: 1}
+  Avg Crystallizer Stirring Speed: {min: 10, max: 15, default: 12, step: 1}
