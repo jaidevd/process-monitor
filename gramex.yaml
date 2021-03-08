@@ -35,11 +35,9 @@ url:
     handler: FormHandler
     kwargs:
       batch:
-        url: $YAMLPATH/data.xlsx
-        sheet_name: batch
+        url: $YAMLPATH/data_batch.csv
       summary:
-        url: $YAMLPATH/data.xlsx
-        sheet_name: batchsummary
+        url: $YAMLPATH/data_summary.csv
       modify: process_monitor.classify(data, handler)
 
   process-monitor-classify:
@@ -47,8 +45,7 @@ url:
     handler: MLHandler
     kwargs:
       data:
-        url: $YAMLPATH/data.xlsx
-        sheet_name: input
+        url: $YAMLPATH/data_input.csv
       model:
         class: DecisionTreeClassifier
         target_col: Outcome
