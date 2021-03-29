@@ -41,7 +41,7 @@ url:
       modify: process_monitor.classify(data, handler)
 
   process-monitor-classify:
-    pattern: /$YAMLURL/(classify)
+    pattern: /$YAMLURL/classify
     handler: MLHandler
     kwargs:
       template: mlhandler-template.html
