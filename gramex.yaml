@@ -44,10 +44,12 @@ url:
     pattern: /$YAMLURL/(classify)
     handler: MLHandler
     kwargs:
+      template: mlhandler-template.html
       data:
         url: $YAMLPATH/data_input.csv
       model:
-        class: DecisionTreeClassifier
+        class: LogisticRegression
+        path: $YAMLPATH/process-monitor-classify.pkl
         target_col: Outcome
         exclude: [Batch Number]
         cats:
