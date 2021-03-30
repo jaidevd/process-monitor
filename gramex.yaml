@@ -44,6 +44,8 @@ url:
     pattern: /$YAMLURL/classify
     handler: MLHandler
     kwargs:
+      headers:
+        Cache-Control: "no-cache, no-store"
       template: mlhandler-template.html
       data:
         url: $YAMLPATH/data_input.csv
