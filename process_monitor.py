@@ -1,5 +1,7 @@
 import gramex.ml
 import gramex.cache
+from gramex.config import variables
+from tornado.template import Template
 
 modelinfo = gramex.cache.open('model.yaml', 'config', rel=True)
 
@@ -45,3 +47,28 @@ def simulate(df, handler):
 def predict(df):
     model = gramex.ml.load(modelinfo.path)
     return model.predict(df)
+
+
+def diffpredict(handler):
+    prev_args = [k for k in handler.args if k.startswith('prev_')]
+    if not prev_args:
+        return False
+    found = False
+    for arg in prev_args:
+        previous = handler.get_argument(arg)
+        current = handler.get_argument(arg.replace('prev_', ''))
+        if previous != current:
+            arg = arg.replace('prev_', '')
+            found = True
+            break
+    if not found:
+        return False
+    prev_outcome = handler.get_argument('prev_Outcome')
+    curr_outcome = handler.get_argument('Outcome')
+    verb = 'does not affect'
+    if (prev_outcome, curr_outcome) == ('Bad', 'Good'):
+        verb = 'improves'
+    elif (prev_outcome, curr_outcome) == ('Good', 'Bad'):
+        verb = 'spoils'
+    return Template(variables['narrative']).generate(
+        arg=arg, previous=previous, current=current, outcome_verb=verb)

@@ -21,8 +21,7 @@
     <h1 class="h4 pb-3 text-light font-weight-bold">Predict Process Outcome</h1>
     <p class="text-light mb-3 pb-3">Find out whether your process will lead to a good outcome or a bad one. Fill your batch parameters to see the result.</p>
 
-    <h2 class="bg-white font-weight-bold text-uppercase py-3 mt-3 mb-0">
-      This batch is <span class="result-text"><i class="fa-pulse fa-spinner fas"></i></span>
+    <h2 id="result-narrative" class="bg-white font-weight-bold text-uppercase py-3 mt-3 mb-0">
     </h2>
     <form class="result bg-light rounded p-3">
       {% for feature in modelinfo.features.categorical %}

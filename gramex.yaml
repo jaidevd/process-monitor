@@ -3,13 +3,39 @@
 
 # Configurations for app: process-monitor
 # ----------------------------------------------------------------------------
+variables:
+  narrative: "Modifying {{ arg }} from {{ previous }} to {{ current }} {{ outcome_verb }} the batch"
 url:
+  process-monitor/auth:
+    pattern: /$YAMLURL/auth
+    handler: DBAuth
+    kwargs:
+      template: $YAMLPATH/login.html
+      url: sqlite:///$YAMLPATH/auth.sqlite3
+      table: users
+      user:
+        column: user
+      password:
+        column: password
+      redirect:
+        query: next
+        header: Referer
+        url: /$YAMLURL/
+
   process-monitor-home:
     pattern: /$YAMLURL/
     handler: FileHandler
     kwargs:
       path: $YAMLPATH/index.html
       template: true
+  narrative:
+    pattern: /$YAMLURL/narrative
+    handler: FileHandler
+    kwargs:
+      path: $YAMLPATH/narrative.html
+      template: true
+      headers:
+        Content-Type: text/html
 
   process-monitor-public-page:
     pattern: /$YAMLURL/(help|code)
@@ -18,12 +44,51 @@ url:
       path: $YAMLPATH/*.html
       template: true
 
+  process-monitor-mobile:
+    pattern: /$YAMLURL/mobile
+    handler: FileHandler
+    kwargs:
+      path: $YAMLPATH/mobile.html
+      template: true
+      auth:
+        login_url: /$YAMLURL/auth
+        membership:
+          role:
+            - supervisor
+            - operator
+            - analyst
+      headers:
+        # Templates may have user-specific content. Cache privately.
+        # Keep max-age small (in case we log out & log in as another user.)
+        Cache-Control: private, max-age=1
+
+  process-monitor-monitor:
+    pattern: /$YAMLURL/monitor
+    handler: FileHandler
+    kwargs:
+      path: $YAMLPATH/monitor.html
+      template: true
+      auth:
+        login_url: /$YAMLURL/auth
+        membership:
+          role:
+            - operator
+            - analyst
+      headers:
+        # Templates may have user-specific content. Cache privately.
+        # Keep max-age small (in case we log out & log in as another user.)
+        Cache-Control: private, max-age=1
+
   process-monitor-page:
-    pattern: /$YAMLURL/(monitor|mobile|predictor|simulator)
+    pattern: /$YAMLURL/(predictor|simulator)
     handler: FileHandler
     kwargs:
       path: $YAMLPATH/*.html
       template: true
+      auth:
+        login_url: /$YAMLURL/auth
+        membership:
+          role: analyst
       headers:
         # Templates may have user-specific content. Cache privately.
         # Keep max-age small (in case we log out & log in as another user.)
@@ -46,11 +111,12 @@ url:
     kwargs:
       headers:
         Cache-Control: "no-cache, no-store"
+      config_dir: $YAMLPATH
       template: mlhandler-template.html
       data:
         url: $YAMLPATH/data_input.csv
       model:
-        class: LogisticRegression
+        class: DecisionTreeClassifier
         path: $YAMLPATH/process-monitor-classify.pkl
         target_col: Outcome
         exclude: [Batch Number]

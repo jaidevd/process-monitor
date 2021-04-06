@@ -1,0 +1,9 @@
+{% from process_monitor import diffpredict %}
+{% from gramex.config import variables %}
+{% set diff = diffpredict(handler) %}
+{% set outcome = handler.get_argument('Outcome') %}
+{% if not diff %}
+  This batch is {{ outcome }}
+{% else %}
+  {{ diff }}
+{% end %}

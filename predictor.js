@@ -1,4 +1,6 @@
-/* globals ClipboardJS */
+/* globals ClipboardJS, config */
+
+var predictInput = {}
 
 $(function() {
   // Sync number and range in input
@@ -25,8 +27,19 @@ $(function() {
     })
     $.getJSON(q.toString())
       .done(function (data) {
-        $('.result').removeClass('Good Bad bg-light').addClass(data[0].Outcome)
-        $('.result-text').text(data[0].Outcome)
+        var narrativeURL = g1.url.parse('/narrative')
+        if (Object.keys(predictInput).length == 0) {
+          predictInput = data[0]
+          narrativeURL.update({Outcome: predictInput.Outcome})
+        } else {
+          narrativeURL.update(_.mapKeys(predictInput, (value, key) => { return 'prev_' + key }))
+          narrativeURL.update(data[0])
+        }
+        $.get(narrativeURL.toString()).done(function(r) {
+          $('#result-narrative').html(r)
+          $('.result').removeClass('Good Bad bg-light').addClass(data[0].Outcome)
+          // $('.result-text').text(data[0].Outcome)
+        })
       })
       .fail(function () {
         $('.result-text').html('in error <small>(see console log)</small>')
