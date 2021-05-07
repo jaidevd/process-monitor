@@ -12,9 +12,14 @@
 
 <body>
   {% set base = '.' %}
+  {% from gramex.config import variables %}
   {% include template-navbar.html %}
   {% set data_src = 'datasimulate?' + handler.request.query %}
-  {% include template-plant.html %}
+  {% if variables['plant_ui'] == "template-plant.html" %}
+    {% include template-plant.html %}
+  {% elif variables['plant_ui'] == "template-plant-2.html" %}
+    {% include template-plant-2.html %}
+  {% end %}
   {% set import process_monitor %}
   {% set q = process_monitor.argparse(handler) %}
   {% include template-controls.html %}

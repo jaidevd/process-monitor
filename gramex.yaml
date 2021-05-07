@@ -5,6 +5,7 @@
 # ----------------------------------------------------------------------------
 variables:
   narrative: "Modifying {{ arg }} from {{ previous }} to {{ current }} {{ outcome_verb }} the batch"
+  plant_ui: template-plant.html
 url:
   process-monitor/auth:
     pattern: /$YAMLURL/auth
