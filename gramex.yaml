@@ -30,12 +30,13 @@ url:
       template: true
   narrative:
     pattern: /$YAMLURL/narrative
-    handler: FileHandler
+    handler: FunctionHandler
     kwargs:
-      path: $YAMLPATH/narrative.html
-      template: true
+      function: process_monitor.narrative
+      # template: true
       headers:
         Content-Type: text/html
+        Cache-Control: no-cache
 
   process-monitor-public-page:
     pattern: /$YAMLURL/(help|code)
@@ -92,8 +93,8 @@ url:
       headers:
         # Templates may have user-specific content. Cache privately.
         # Keep max-age small (in case we log out & log in as another user.)
-        Cache-Control: private, max-age=1
-    cache: {expiry: {duration: 1}}
+        Cache-Control: no-store
+        # cache: {expiry: {duration: 1}}
 
   process-monitor-data:
     pattern: /$YAMLURL/(data|datasimulate)
@@ -116,7 +117,7 @@ url:
       data:
         url: $YAMLPATH/data_input.csv
       model:
-        class: DecisionTreeClassifier
+        class: LogisticRegression
         path: $YAMLPATH/process-monitor-classify.pkl
         target_col: Outcome
         exclude: [Batch Number]

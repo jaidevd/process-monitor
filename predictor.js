@@ -36,6 +36,7 @@ $(function() {
           narrativeURL.update(data[0])
         }
         $.get(narrativeURL.toString()).done(function(r) {
+          predictInput = data[0]
           $('#result-narrative').html(r)
           $('.result').removeClass('Good Bad bg-light').addClass(data[0].Outcome)
           // $('.result-text').text(data[0].Outcome)

@@ -49,10 +49,10 @@ def predict(df):
     return model.predict(df)
 
 
-def diffpredict(handler):
+def narrative(handler):
     prev_args = [k for k in handler.args if k.startswith('prev_')]
     if not prev_args:
-        return False
+        return f"This batch is {handler.get_argument('Outcome')}"
     found = False
     for arg in prev_args:
         previous = handler.get_argument(arg)
@@ -62,7 +62,7 @@ def diffpredict(handler):
             found = True
             break
     if not found:
-        return False
+        return f"This batch is {handler.get_argument('Outcome')}"
     prev_outcome = handler.get_argument('prev_Outcome')
     curr_outcome = handler.get_argument('Outcome')
     verb = 'does not affect'
