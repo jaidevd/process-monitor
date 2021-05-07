@@ -73,6 +73,7 @@ url:
         login_url: /$YAMLURL/auth
         membership:
           role:
+            - supervisor
             - operator
             - analyst
       headers:
@@ -89,7 +90,10 @@ url:
       auth:
         login_url: /$YAMLURL/auth
         membership:
-          role: analyst
+          role:
+            - supervisor
+            - operator
+            - analyst
       headers:
         # Templates may have user-specific content. Cache privately.
         # Keep max-age small (in case we log out & log in as another user.)
