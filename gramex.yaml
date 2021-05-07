@@ -153,3 +153,12 @@ import:
   ui:
     path: $GRAMEXAPPS/ui/gramex.yaml
     YAMLURL: $YAMLURL/ui/
+  admin:
+    path: $GRAMEXAPPS/admin2/gramex.yaml
+    YAMLURL: $YAMLURL/admin/
+    ADMIN_KWARGS:
+      authhandler: process-monitor/auth
+    ADMIN_AUTH:
+      login_url: /$YAMLURL/auth
+      membership:
+        role: analyst
