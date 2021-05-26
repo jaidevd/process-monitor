@@ -81,3 +81,5 @@ $RECYCLE.BIN/
 .fuse_hidden*
 
 *.pkl
+config.json
+data.h5

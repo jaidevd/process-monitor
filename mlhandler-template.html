@@ -93,7 +93,7 @@ body {
   <div class="container-fluid py-4 px-3">
     <div class="row pb-3 pt-3">
       <div class="col-8 border-right border-dark">
-        <h1 class="text-center">Train the Model</h1>
+        <h3 class="text-center">Train the Model</h3>
         <form class="form" id="train">
           <div class="container">
             <div class="row pt-3 pb-3">
@@ -147,18 +147,24 @@ body {
               </div>
               <div class="col">
                 <label for="metric">Choose a Metric:</label>
-                <select id="metric" class="form-control" name="metric">
-                  {% if handler.get_opt('class') in CLASSIFICTION_MODELS %}
-                  {% for mname, metric in CLASSIFICTION_METRICS.items() %}
+                <select id="metric" class="form-control selectpicker" name="metric">
+                {% if handler.get_opt('class') in CLASSIFICTION_MODELS %}
+                  {% for i, (mname, metric) in enumerate(CLASSIFICTION_METRICS.items()) %}
                   {% set selected = "selected" if metric == "accuracy" else "" %}
                   <option value="{{ metric }}" {{ selected }}>{{ mname }}</option>
+                    {% if i == 0 %}
+                    <option data-divider="true"></option>
+                    {% end %}
                   {% end %}
-                  {% else %}
-                  {% for mname, metric in REGRESSION_METRICS.items() %}
+                {% else %}
+                  {% for i, (mname, metric) in enumerate(REGRESSION_METRICS.items()) %}
                   {% set selected = "selected" if metric == "r2" else "" %}
                   <option value="{{ metric }}" {{ selected }}>{{ mname }}</option>
+                    {% if i == 0 %}
+                    <option data-divider="true"></option>
+                    {% end %}
                   {% end %}
-                  {% end %}
+                {% end %}
                 </select>
               </div>
               <div class="col">
@@ -226,19 +232,27 @@ body {
         </div>
       </div>
       <div class="col-4">
-        <h1 class="text-center">Make Predictions</h1>
-        <form id="predictform">
+        <h3 class="text-center">Make Predictions</h3>
+        <div class="row py-2">
+          <div class="col">
+            <button type="submit" form="predictform" class="btn btn-primary">Predict</button>
+          </div>
+          <div class="col">
+            <h4 id="predResult"></h4>
+          </div>
+        </div>
+        <form id="predictform" class="overflow-auto">
           <template id="predicttabtemplate">
+            <div class="container">
               <% COLS.forEach(function(col) { %>
               <div class="form-group row">
-                <label for="<%= col.name %>" class="col-md-4"><%= col.name %></label>
-                <input class="form-control col-md-7" type="<%= col.type %>" name="<%= col.name %>" value="<%=row[col.name]%>">
+                <label for="<%= col.name %>" class="col-md-6"><%= col.name %></label>
+                <input class="form-control col-md-6" type="<%= col.type %>" name="<%= col.name %>" value="<%=row[col.name]%>">
               </div>
               <% }) %>
+            </div>
           </template>
         </form>
-        <button type="submit" form="predictform" class="btn btn-primary">Predict</button>
-        <div id="predResult"></div>
       </div>
     </div>
   </div><!-- .container-fluid -->
