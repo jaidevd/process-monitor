@@ -384,7 +384,7 @@
             </text>
             <path stroke-opacity=".2" stroke="#000" stroke-linecap="square" d="M220.5 279.7h119"/>
             <text text-anchor="middle" font-size="36" font-weight="bold" fill="#000" transform="translate(220 160)">
-              <tspan x="60" y="108" id="solvent"><%= row['Solvent Amt'] %></tspan>
+              <tspan x="60" y="108" class="paramval"><%= row['Solvent Amt'] %></tspan>
             </text>
             <g transform="translate(254 180)">
               <circle stroke="#000" stroke-width="2" fill-opacity=".75" fill="#FFF" cx="25" cy="25" r="24"/>
@@ -402,7 +402,7 @@
             </text>
             <path stroke-opacity=".2" stroke="#000" stroke-linecap="square" d="M400.5 279.7h119"/>
             <text text-anchor="middle" font-size="36" font-weight="bold" fill="#000" transform="translate(400 160)">
-              <tspan x="60" y="108"><%= row['Material A'] %></tspan>
+              <tspan x="60" y="108" class="paramval"><%= row['Material A'] %></tspan>
             </text>
             <g transform="translate(435 180)">
               <circle stroke="#000" stroke-width="2" fill-opacity=".75" fill="#FFF" cx="25" cy="25" r="24"/>
@@ -420,7 +420,7 @@
             </text>
             <path stroke-opacity=".2" stroke="#000" stroke-linecap="square" d="M540.5 279.7h119"/>
             <text text-anchor="middle" font-size="36" font-weight="bold" fill="#000" transform="translate(540 160)">
-              <tspan x="60" y="108"><%= row['Material B'] %></tspan>
+              <tspan x="60" y="108" class="paramval"><%= row['Material B'] %></tspan>
             </text>
             <g transform="translate(575 180)">
               <circle stroke="#000" stroke-width="2" fill-opacity=".75" fill="#FFF" cx="25" cy="25" r="24"/>
@@ -447,7 +447,7 @@
               <tspan x="20" y="184">AVG</tspan>
             </text>
             <text text-anchor="middle" font-size="36" font-weight="bold" fill="#000" transform="translate(380 420)">
-              <tspan x="80" y="220"><%- row['Avg Reactor Temperature'] %></tspan>
+              <tspan x="80" y="220" class="paramval"><%- row['Avg Reactor Temperature'] %></tspan>
             </text>
             <text text-anchor="middle" font-size="10" fill="#000" transform="translate(440 420)">
               <tspan x="20" y="235">TEMP °C</tspan>
@@ -457,7 +457,7 @@
               <tspan x="20" y="105"><CURRENT></tspan>
             </text>
             <text text-anchor="middle" font-size="36" font-weight="bold" fill="#000" transform="translate(380 420)">
-              <tspan x="80" y="140"><%- row['Reactor Temperature'] %></tspan>
+              <tspan x="80" y="140" class="paramval"><%- row['Reactor Temperature'] %></tspan>
             </text>
             <text text-anchor="middle" font-size="10" fill="#000" transform="translate(440 420)">
               <tspan x="20" y="155">TEMP °C</tspan>
@@ -485,10 +485,10 @@
               <tspan x="120" y="155">SPEED</tspan>
             </text>
             <text text-anchor="middle" font-size="36" font-weight="bold" fill="#000" transform="translate(620 420)">
-              <tspan x="50" y="140"><%- row['Crystallizer Cooling Rate'] %></tspan>
+              <tspan x="50" y="140" class="paramval"><%- row['Crystallizer Cooling Rate'] %></tspan>
             </text>
             <text text-anchor="middle" font-size="36" font-weight="bold" fill="#000" transform="translate(620 420)">
-              <tspan x="120" y="140"><%- row['Crystallizer Stirring Speed'] %></tspan>
+              <tspan x="120" y="140" class="paramval"><%- row['Crystallizer Stirring Speed'] %></tspan>
             </text>
             <path fill-opacity=".5" fill="#FFF" d="M621 589h158v70H621z"/>
             <text text-anchor="middle" font-size="10" font-weight="bold" fill="#000" transform="translate(620 420)">
@@ -501,10 +501,10 @@
               <tspan x="120" y="235">SPEED</tspan>
             </text>
             <text text-anchor="middle" font-size="36" font-weight="bold" fill="#000" transform="translate(620 420)">
-              <tspan x="50" y="220"><%- row['Avg Crystallizer Cooling Rate'] %></tspan>
+              <tspan x="50" y="220" class="paramval"><%- row['Avg Crystallizer Cooling Rate'] %></tspan>
             </text>
             <text text-anchor="middle" font-size="36" font-weight="bold" fill="#000" transform="translate(620 420)">
-              <tspan x="120" y="220"><%- row['Avg Crystallizer Stirring Speed'] %></tspan>
+              <tspan x="120" y="220" class="paramval"><%- row['Avg Crystallizer Stirring Speed'] %></tspan>
             </text>
             <g transform="translate(675 440)">
               <circle stroke="#000" stroke-width="2" fill-opacity=".75" fill="#FFF" cx="25" cy="25" r="24"/>
@@ -596,10 +596,10 @@
               <tspan x="120" y="154">SPEED</tspan>
             </text>
             <text text-anchor="middle" font-size="36" font-weight="bold" fill="#000" transform="translate(1300 420)">
-              <tspan x="50" y="140"><%- row['Dryer Temperature'] %></tspan>
+              <tspan x="50" y="140" class="paramval"><%- row['Dryer Temperature'] %></tspan>
             </text>
             <text text-anchor="middle" font-size="36" font-weight="bold" fill="#000" transform="translate(1300 420)">
-              <tspan x="120" y="140"><%- row['Drying Speed'] %></tspan>
+              <tspan x="120" y="140" class="paramval"><%- row['Drying Speed'] %></tspan>
             </text>
             <path fill-opacity=".5" fill="#FFF" d="M1301 589h158v70h-158z"/>
             <text text-anchor="middle" font-size="10" font-weight="bold" fill="#000" transform="translate(1300 420)">
@@ -612,10 +612,10 @@
               <tspan x="120" y="235">SPEED</tspan>
             </text>
             <text text-anchor="middle" font-size="36" font-weight="bold" fill="#000" transform="translate(1300 420)">
-              <tspan x="50" y="220"><%- row['Avg Dryer Temperature'] %></tspan>
+              <tspan x="50" y="220" class="paramval"><%- row['Avg Dryer Temperature'] %></tspan>
             </text>
             <text text-anchor="middle" font-size="36" font-weight="bold" fill="#000" transform="translate(1300 420)">
-              <tspan x="120" y="220"><%- row['Avg Drying Speed'] %></tspan>
+              <tspan x="120" y="220" class="paramval"><%- row['Avg Drying Speed'] %></tspan>
             </text>
             <g transform="translate(1355 440)">
               <circle stroke="#000" stroke-width="2" fill-opacity=".75" fill="#FFF" cx="25" cy="25" r="24"/>
@@ -638,14 +638,14 @@
               <tspan x="80" y="184">AVG</tspan>
             </text>
             <text text-anchor="middle" font-size="36" font-weight="bold" fill="#000" transform="translate(1560 420)">
-              <tspan x="80" y="217.521"><%- row['Crushing speed'] %></tspan>
+              <tspan x="80" y="217.521" class="paramval"><%- row['Crushing speed'] %></tspan>
             </text>
             <path fill-opacity=".5" fill="#FFF" d="M1561 510h158v70h-158z"/>
             <text text-anchor="middle" font-size="10" font-weight="bold" fill="#000" transform="translate(1560 420)">
               <tspan x="80" y="105">CURRENT</tspan>
             </text>
             <text text-anchor="middle" font-size="36" font-weight="bold" fill="#000" transform="translate(1560 420)">
-              <tspan x="80" y="138.521"><%- row['Avg Crushing speed'] %></tspan>
+              <tspan x="80" y="138.521" class="paramval"><%- row['Avg Crushing speed'] %></tspan>
             </text>
             <g transform="translate(1615 440)">
               <circle stroke="#000" stroke-width="2" fill-opacity=".75" fill="#FFF" cx="25" cy="25" r="24"/>

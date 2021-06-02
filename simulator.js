@@ -4,7 +4,7 @@ const EDIT_OPTS = {
   'material-a':
     '<select id="material-a" class="form-control svgin"><option value="A1">A1</option><option value="A2">A2</option></select>',
   'material-b': '<select id="material-b" class="form-control svgin"><option value="B1">B1</option><option value="B2">B2</option></select>',
-  solvent: '<select id="solvent" class="form-control svgin"><option value="Low">Low</option><option value="Hi">Hi</option></select>',
+  solvent: '<select id="solvent" class="form-control svgin"><option value="Low">Low</option><option value="High">High</option></select>',
   reactor: '<input id="reactor-speed" type="range" min="80" max="86" value="83" step="1"  class="form-control svgin">',
   dryer: '<input id="dryer-speed" type="range" min="20" max="25" value="22" step="1"  class="form-control svgin">',
   crusher: '<input id="crusher-speed" type="range" min="12" max="15" value="14" step="1"  class="form-control svgin">',
@@ -65,6 +65,9 @@ $(function () {
       var index = q.time ? +q.time - 1 : 0
       render()
       $('[data-toggle="popover"]').on('shown.bs.popover', function(evt) {
+        // Set default vals
+        let paramval = $(evt.currentTarget).find('.paramval').text()
+        $($(evt.currentTarget).data()['bs.popover'].tip).find('.svgin').val(paramval)
         $('.svgin').change(function() {
           let param_id = $(this).attr('id')
           if (param_id == "solvent") {

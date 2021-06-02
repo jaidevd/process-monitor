@@ -18,14 +18,13 @@
       <span class="font-weight-bold underline" id="crystallizer">{{ q.crystallizer }}%</span>
     </div>
   </div>
-  <!--
-  <div class="text-left" style="left: 33%">
+  <div class="text-left" style="left: 33%" hidden>
     <div class="sm2">
       <div>Set Solvent to</div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="solvent" id="solvent-hi" value="Hi"
-          {{ 'checked' if (q.solvent == 'Hi') else '' }} >
-        <label class="form-check-label" for="solvent-hi">Hi</label>
+        <input class="form-check-input" type="radio" name="solvent" id="solvent-high" value="High"
+          {{ 'checked' if (q.solvent == 'High') else '' }} >
+        <label class="form-check-label" for="solvent-high">High</label>
       </div>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="solvent" id="solvent-low" value="Low"
@@ -34,7 +33,6 @@
       </div>
     </div>
   </div>
-  -->
   <div class="text-center" style="left: 53.7%">
     <input type="range" name="dryer" min="50" max="150" value={{ q.dryer }}>
     <div class="sm2">
@@ -42,8 +40,8 @@
       <span class="font-weight-bold underline" id="dryer">{{ q.dryer }}%</span>
     </div>
   </div>
-  <input type="hidden" name="material-a" id="material-a">
-  <input type="hidden" name="material-b" id="material-b">
+  <input type="hidden" name="material-a" id="material-a" value="{{ q.get('material-a', '') }}">
+  <input type="hidden" name="material-b" id="material-b" value="{{ q.get('material-b', '') }}">
   <input type="hidden" name="reactor-speed" id="reactor-speed">
   <input type="hidden" name="dryer-speed" id="dryer-speed">
   <input type="hidden" name="crusher-speed" id="crusher-speed">
