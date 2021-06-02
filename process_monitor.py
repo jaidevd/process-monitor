@@ -2,6 +2,7 @@ import gramex.ml
 import gramex.cache
 from gramex.config import variables
 from tornado.template import Template
+import pandas as pd
 
 modelinfo = gramex.cache.open('model.yaml', 'config', rel=True)
 
@@ -26,7 +27,8 @@ def classify(data, handler):
         df = simulate(df, handler)
     df = df.join(df.expanding().mean().round(1).add_prefix('Avg '))
     if (is_simulate and is_predict):
-        df['Outcome'] = predict(df)
+        prediction = predict(df)
+        df.loc[prediction.index, 'Outcome'] = prediction.values
     df['isGood'] = df['Outcome'].eq('Good').astype(int)
     return df
 
@@ -46,7 +48,8 @@ def simulate(df, handler):
 
 def predict(df):
     model = gramex.ml.load(modelinfo.path)
-    return model.predict(df)
+    xdf = df[model.named_steps['transform']._feature_names_in].dropna()
+    return pd.Series(model.predict(xdf), index=xdf.index)
 
 
 def narrative(handler):
