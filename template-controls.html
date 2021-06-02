@@ -1,5 +1,6 @@
 <!-- q -->
 <!-- htmllint preset="none" -->
+{% set print(q) %}
 
 <form class="controls mt-n3">
   {% if (q.speed) %}<input type="hidden" name="speed" value="{{ q.speed }}">{% end %}
@@ -17,6 +18,7 @@
       <span class="font-weight-bold underline" id="crystallizer">{{ q.crystallizer }}%</span>
     </div>
   </div>
+  <!--
   <div class="text-left" style="left: 33%">
     <div class="sm2">
       <div>Set Solvent to</div>
@@ -32,6 +34,7 @@
       </div>
     </div>
   </div>
+  -->
   <div class="text-center" style="left: 53.7%">
     <input type="range" name="dryer" min="50" max="150" value={{ q.dryer }}>
     <div class="sm2">
@@ -39,4 +42,10 @@
       <span class="font-weight-bold underline" id="dryer">{{ q.dryer }}%</span>
     </div>
   </div>
+  <input type="hidden" name="material-a" id="material-a">
+  <input type="hidden" name="material-b" id="material-b">
+  <input type="hidden" name="reactor-speed" id="reactor-speed">
+  <input type="hidden" name="dryer-speed" id="dryer-speed">
+  <input type="hidden" name="crusher-speed" id="crusher-speed">
+  <input type="hidden" name="crystallizer-speed" id="crystallizer-speed">
 </form>

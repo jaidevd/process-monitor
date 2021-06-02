@@ -1,7 +1,10 @@
 <!-- row, data, simulate, index, charts -->
 <!-- htmllint preset="none" -->
 
+{% from process_monitor import modelinfo %}
+
 <i class="loading fa-10x fa-pulse fa-spinner fas m-5 p-5"></i>
+
 
 
 <script type="text/html" data-engine="vdom" data-src="{{ data_src }}">
@@ -371,7 +374,7 @@
         <% } %>
 
         <g class="main-image">
-          <g class="solvent">
+          <g class="solvent" data-param="Solvent" data-toggle="popover" data-container="body" data-placement="top">
             <g transform="translate(220 160)">
               <use fill="#000" filter="url(#Q)" xlink:href="#R"/>
               <rect stroke="#999" stroke-linejoin="square" fill="url(#M)" x=".5" y=".5" width="119" height="159" rx="10"/>
@@ -381,7 +384,7 @@
             </text>
             <path stroke-opacity=".2" stroke="#000" stroke-linecap="square" d="M220.5 279.7h119"/>
             <text text-anchor="middle" font-size="36" font-weight="bold" fill="#000" transform="translate(220 160)">
-              <tspan x="60" y="108"><%= row['Solvent Amt'] %></tspan>
+              <tspan x="60" y="108" id="solvent"><%= row['Solvent Amt'] %></tspan>
             </text>
             <g transform="translate(254 180)">
               <circle stroke="#000" stroke-width="2" fill-opacity=".75" fill="#FFF" cx="25" cy="25" r="24"/>
@@ -389,7 +392,7 @@
             </g>
           </g>
 
-          <g class="material-b">
+          <g class="material-a" data-param="Material A" data-toggle="popover" data-container="body" data-placement="top">
             <g transform="translate(400 160)">
               <use fill="#000" filter="url(#S)" xlink:href="#T"/>
               <rect stroke="#999" stroke-linejoin="square" fill="url(#M)" x=".5" y=".5" width="119" height="159" rx="10"/>
@@ -407,7 +410,7 @@
             </g>
           </g>
 
-          <g class="material-b">
+          <g class="material-b" data-param="Material B" data-toggle="popover" data-container="body" data-placement="top">
             <g transform="translate(540 160)">
               <use fill="#000" filter="url(#U)" xlink:href="#V"/>
               <rect stroke="#999" stroke-linejoin="square" fill="url(#M)" x=".5" y=".5" width="119" height="159" rx="10"/>
@@ -461,7 +464,7 @@
             </text>
           </g>
 
-          <g class="crystallizer">
+          <g class="crystallizer" data-param="Crystallizer Speed" data-toggle="popover" data-container="body" data-placement="top">
             <% fill = isActive('Crystallizer Cooling Rate') %>
             <g transform="translate(620 420)">
               <use fill="#000" filter="url(#Z)" xlink:href="#aa"/>
@@ -572,7 +575,7 @@
             </g>
           </g>
 
-          <g class="dryer">
+          <g class="dryer" data-param="Dryer Speed" data-toggle="popover" data-container="body" data-placement="top">
             <% fill = isActive('Drying Speed') %>
             <g transform="translate(1300 420)">
               <use fill="#000" filter="url(#al)" xlink:href="#am"/>
@@ -620,7 +623,7 @@
             </g>
           </g>
 
-          <g class="crusher">
+          <g class="crusher" data-param="Crusher Speed" data-toggle="popover" data-container="body" data-placement="top">
             <% fill = isActive('Crushing speed') %>
             <g transform="translate(1560 420)">
               <use fill="#000" filter="url(#an)" xlink:href="#ao"/>
